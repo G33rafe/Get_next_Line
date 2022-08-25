@@ -62,7 +62,7 @@ char	*get_next_line(int fd)
 	line = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	if (!line)
 		return (NULL);
-	while (read_value != 0 && !ft_strchr(buffer[fd]), '\n'))
+	while (read_value != 0 && !ft_strchr(buffer[fd], '\n'))
 	{
 		read_value = read(fd, line, BUFFER_SIZE);
 		if (read_value == -1)
