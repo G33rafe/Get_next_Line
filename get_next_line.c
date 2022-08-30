@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rajacque <rajacque@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/29 13:21:02 by rajacque          #+#    #+#             */
+/*   Updated: 2022/08/29 13:21:02 by rajacque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "get_next_line.h"
 
 char	*ft_new_line(char *buffer)
@@ -37,22 +48,15 @@ char	*ft_new_buffer(char *buffer)
 		return (NULL);
 	}
 	new_buffer = ft_calloc(sizeof(char), (ft_strlen(buffer) - i + 1));
-	while (buffer[i])
-	{
-		new_buffer[j] = buffer[i];
-		i++;
-		j++;
-	}
+	while (buffer[i++])
+		new_buffer[j++] = buffer[i];
 	free (buffer);
 	return (new_buffer);
 }
 
-
-
-
 char	*get_next_line(int fd)
 {
-	static char	*buffer[OPEN_MAX];
+	static char	*buffer;
 	char		*line;
 	int			read_value;
 
@@ -62,7 +66,7 @@ char	*get_next_line(int fd)
 	line = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	if (!line)
 		return (NULL);
-	while (read_value != 0 && !ft_strchr(buffer[fd], '\n'))
+	while (read_value != 0 && !ft_strchr(buffer, '\n'))
 	{
 		read_value = read(fd, line, BUFFER_SIZE);
 		if (read_value == -1)
@@ -71,10 +75,10 @@ char	*get_next_line(int fd)
 			return (NULL);
 		}
 		line[read_value] = '\0';
-		buffer[fd] = ft_strjoin(buffer(fd), line);
+		buffer = ft_strjoin(buffer, line);
 	}
 	free (line);
-	line = ft_new_line(buffer[fd]);
-	buffer[fd] = ft_new_buffer(buffer(fd));
-	return (line);	
+	line = ft_new_line(buffer);
+	buffer = ft_new_buffer(buffer);
+	return (line);
 }
