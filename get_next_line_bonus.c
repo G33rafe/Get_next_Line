@@ -6,11 +6,11 @@
 /*   By: rajacque <rajacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:27:19 by rajacque          #+#    #+#             */
-/*   Updated: 2022/08/30 14:27:19 by rajacque         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:07:26 by rajacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_new_line(char *buffer)
 {
@@ -57,12 +57,12 @@ char	*ft_new_buffer(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[FOPEN_MAX];
+	static char	*buffer[OPEN_MAX];
 	char		*line;
 	int			read_value;
 
 	read_value = 1;
-	if (fd < 0 || BUFFER_SIZE < 1 || fd > FOPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE < 1 || fd > OPEN_MAX)
 		return (NULL);
 	line = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 	if (!line)

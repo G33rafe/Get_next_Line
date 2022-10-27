@@ -6,11 +6,11 @@
 /*   By: rajacque <rajacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:26:50 by rajacque          #+#    #+#             */
-/*   Updated: 2022/08/30 14:26:50 by rajacque         ###   ########.fr       */
+/*   Updated: 2022/09/06 13:50:51 by rajacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -49,9 +49,9 @@ char	*ft_strchr(const char *str, int c)
 	c = (char)c;
 	if (!str)
 		return (NULL);
-	while (str[i] != '\0' && str[i] != 'c')
+	while (str[i] != '\0' && str[i] != c)
 		i++;
-	if(str[i] == c)
+	if (str[i] == c)
 		return ((char *)str + i);
 	return (NULL);
 }
@@ -59,7 +59,7 @@ char	*ft_strchr(const char *str, int c)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	int	i;
+	int		i;
 	size_t	j;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: rajacque <rajacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:20:31 by rajacque          #+#    #+#             */
-/*   Updated: 2022/08/29 13:20:31 by rajacque         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:12:06 by rajacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 # endif
 
 # include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>
-# include <stdint.h>
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
