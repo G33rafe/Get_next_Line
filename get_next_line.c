@@ -6,9 +6,10 @@
 /*   By: rajacque <rajacque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:21:02 by rajacque          #+#    #+#             */
-/*   Updated: 2022/08/29 13:21:02 by rajacque         ###   ########.fr       */
+/*   Updated: 2022/11/10 00:05:12 by rajacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_new_line(char *buffer)
@@ -17,7 +18,7 @@ char	*ft_new_line(char *buffer)
 	char	*new_line;
 
 	i = 0;
-	if (!buffer[i])
+	if (!buffer || !buffer[i])
 		return (NULL);
 	new_line = ft_calloc(sizeof(char), (ft_strlen(buffer) + 1));
 	if (!new_line)
@@ -54,6 +55,17 @@ char	*ft_new_buffer(char *buffer)
 	return (new_buffer);
 }
 
+void	*ft_flush_mem(char **buffer, char *line)
+{
+	free(line);
+	if (buffer)
+	{
+		free(*buffer);
+		*buffer = NULL;
+	}
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
@@ -70,14 +82,11 @@ char	*get_next_line(int fd)
 	{
 		read_value = read(fd, line, BUFFER_SIZE);
 		if (read_value == -1)
-		{
-			free (line);
-			return (NULL);
-		}
+			return (ft_flush_mem(&buffer, line));
 		line[read_value] = '\0';
 		buffer = ft_strjoin(buffer, line);
 	}
-	free (line);
+	free(line);
 	line = ft_new_line(buffer);
 	buffer = ft_new_buffer(buffer);
 	return (line);
